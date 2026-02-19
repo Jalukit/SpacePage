@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+# 🚀 My Profile — Space × Travel × Modern
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website built with **React 19**, **TypeScript**, **Tailwind CSS**, and **Framer Motion** — featuring a space-inspired dark/light theme, live GitHub repo integration, and smooth scroll-driven animations.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+| Feature | Details |
+|---------|---------|
+| 🌗 Dark / Light theme | Toggle with smooth CSS shader transitions |
+| 🎞️ Scroll animations | Fade-in sections powered by Framer Motion |
+| 📦 Live GitHub repos | Fetched from GitHub API — always up to date |
+| 🧩 Reusable components | `CTAButton`, `ScrollToTop`, theme context |
+| 📱 Responsive | Mobile-first layout with Tailwind utilities |
+| ⚡ Fast | Vite + SWC for instant HMR and optimized builds |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🗂️ Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/       # Reusable UI (CTAButton, ScrollToTop)
+├── context/          # ThemeContext (dark/light provider)
+├── hooks/            # Custom hooks (useTheme, useGitHubRepos, useActiveSection)
+├── layouts/          # Navbar
+├── sections/         # Page sections (Home, About, Project, Travel, Contact)
+├── data/             # Static data
+├── assets/           # Images & icons
+├── index.css         # Tailwind + space-shader styles
+└── App.tsx           # Root component
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React 19** + **TypeScript 5.9**
+- **Vite 7** (SWC plugin)
+- **Tailwind CSS 3.4** — utility-first styling + custom `.space-shader`
+- **Framer Motion** — scroll & hover animations
+- **Lucide React** — icons
+- **GitHub REST API** — live project cards
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone
+git clone https://github.com/Jalukit/my-profile.git
+cd my-profile
+
+# Install
+npm install
+
+# Dev server (http://localhost:5173)
+npm run dev
+
+# Production build
+npm run build
+npm run preview
 ```
+
+---
+
+## 🌗 Theme Shader
+
+The site uses a custom CSS `.space-shader` class that adapts between themes:
+
+| Theme | Gradient |
+|-------|----------|
+| ☀️ Light | Soft sky: `#f8fafc → #eef2ff → #ffffff` |
+| 🌙 Dark | Deep space: `#000000 → #0f172a → #111827` |
+
+Toggle via the 🌙 / ☀️ button in the navbar.
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+> Built with ☕ and cosmic curiosity by [Jalukit](https://github.com/Jalukit)
