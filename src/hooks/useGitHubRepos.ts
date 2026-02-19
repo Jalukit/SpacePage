@@ -12,8 +12,17 @@ export type GitHubRepo = {
   updated_at: string
 }
 
-const GITHUB_USER = "Jalukit"
-const API_URL = `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=6`
+const GITHUB_USER = "jalukit"
+
+// ใส่ชื่อ repo ที่ pin ไว้บน GitHub profile ตรงนี้
+const PINNED_REPOS = [
+  "SpacePage",
+  "Port",
+  "nest-deploy-test",
+  "next-deploy-test",
+  "Assign-work-demo",
+  "Angular-Simple",
+]
 
 export function useGitHubRepos() {
   const [repos, setRepos] = useState<GitHubRepo[]>([])
@@ -23,14 +32,18 @@ export function useGitHubRepos() {
   useEffect(() => {
     let cancelled = false
 
-    fetch(API_URL, {
-      headers: { Accept: "application/vnd.github.mercy-preview+json" }, // includes topics
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`GitHub API ${res.status}`)
-        return res.json()
+    // ดึงแต่ละ pinned repo แบบ parallel
+    const fetches = PINNED_REPOS.map((name) =>
+      fetch(`https://api.github.com/repos/${GITHUB_USER}/${name}`, {
+        headers: { Accept: "application/vnd.github.mercy-preview+json" },
+      }).then((res) => {
+        if (!res.ok) throw new Error(`GitHub API ${res.status}: ${name}`)
+        return res.json() as Promise<GitHubRepo>
       })
-      .then((data: GitHubRepo[]) => {
+    )
+
+    Promise.all(fetches)
+      .then((data) => {
         if (!cancelled) setRepos(data)
       })
       .catch((err) => {
