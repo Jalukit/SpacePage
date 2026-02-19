@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.stars, .stars2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-repeat: repeat;
+  animation: moveStars 120s linear infinite;
+}
+
+.star3 {
+  position: absolute;
+  width: 160px;
+  height: 2px;
+  pointer-events: none;
+}
+
+/* ดาวเล็ก */
+.stars {
+  background-image:
+    radial-gradient(1px 1px at 25px 25px, white, transparent),
+    radial-gradient(1px 1px at 75px 75px, white, transparent),
+    radial-gradient(1px 1px at 125px 50px, white, transparent),
+    radial-gradient(1px 1px at 50px 125px, white, transparent);
+  background-size: 150px 150px;
+  opacity: 0.5;
+}
+
+/* ดาวใหญ่ */
+.stars2 {
+  background-image:
+    radial-gradient(2px 2px at 50px 50px, white, transparent),
+    radial-gradient(2px 2px at 100px 100px, white, transparent),
+    radial-gradient(2px 2px at 150px 75px, white, transparent);
+  background-size: 300px 300px;
+  opacity: 0.7;
+  animation-duration: 200s;
+}
+
+.star3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,1),
+    rgba(255,255,255,0)
+  );
+
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.8))
+          drop-shadow(0 0 20px rgba(255,255,255,0.6));
+
+  transform-origin: left center;
+
+  opacity: 0;
+
+  animation: cometFall 6s linear infinite;
+  animation-delay: inherit;
+}
+
+/* หางดาว */
+.star3::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 140px;
+  height: 2px;
+
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,0.9),
+    rgba(255,255,255,0)
+  );
+
+  filter: blur(1px);
+
+  opacity: 0;
+
+  animation: cometFall 6s linear infinite;
+  animation-delay: inherit;
+}
+
+.star3:nth-child(1)::before { animation-delay: 0s; }
+.star3:nth-child(2)::before { animation-delay: 2s; }
+.star3:nth-child(3)::before { animation-delay: 4s; }
+
+.star3:nth-child(1)::after { animation-delay: 0s; }
+.star3:nth-child(2)::after { animation-delay: 2s; }
+.star3:nth-child(3)::after { animation-delay: 4s; }
+
+@keyframes cometFall {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(900px, 900px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cometTail {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(600px, 600px) rotate(45deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(900px, 900px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.light-stars {
+  background-image:
+    radial-gradient(1px 1px at 20px 20px, rgba(99,102,241,0.25), transparent),
+    radial-gradient(1px 1px at 60px 80px, rgba(236,72,153,0.25), transparent);
+  background-size: 120px 120px;
+  opacity: 0.4;
+}
+
+.glass-card {
+  @apply bg-white/70 backdrop-blur-xl border border-slate-200
+         shadow-xl shadow-slate-200/50;
+}
+
+.dark .glass-card {
+  @apply bg-white/5 border-white/10 shadow-none;
+}
+
+/* 🌤 text color for light */
+.text-soft {
+  @apply text-slate-600 dark:text-gray-300;
+}
+
+.text-strong {
+  @apply text-slate-800 dark:text-white;
+}
+
+@keyframes moveStars {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1000px);
+  }
+}
